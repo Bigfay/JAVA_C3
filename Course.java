@@ -40,8 +40,8 @@ public class Course {
         return this.price;
     }
 
-    // Course est immutable, l'´egalit´e r´ef´erentielle (implem. par d´efaut)
-    // n'est pas suffisante, il faut donc le r´eimpl´ementer
+    // Course est immutable, l'égalité référentielle (implem. par défaut)
+    // n'est pas suffisante, il faut donc le réimplémenter
     @Override
     public boolean equals(Object o) {
         if (o == null) {
@@ -60,7 +60,7 @@ public class Course {
         return (d.price == price && d.name.equals(name) && d.dessert == dessert);
     }
 
-    // equals est r´eimpl´ement´e, donc je dois r´eimpl´ementer hashCode
+    // equals est réimplémenté, donc je dois réimplémenter hashCode
     @Override
     public int hashCode() {
         int result = 17;
@@ -70,7 +70,7 @@ public class Course {
         return result;
     }
 
-    // clone et constructeur par copie ne doivent pas ^etre r´eimpl´ement´e
+    // clone et constructeur par copie ne doivent pas être réimplémenté
     // pour un type immutable
 
     @Override
