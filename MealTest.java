@@ -1,48 +1,48 @@
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runners.Parameterized.BeforeParam;
 
 public class MealTest {
+
     private final String COURSE1 = "Poulet coco";
     private final float PRICE1 = 12.99f;
     private final boolean DESSERT1 = false;
-    // private static final Integer QUANTITY1 = 4;
 
     private final String COURSE2 = "Riz";
     private final float PRICE2 = 3;
     private final boolean DESSERT2 = false;
-    // private static final Integer QUANTITY2 = 4;
 
-    // @Before
+    private List<Course> coursesList;
 
-    // Course course1 = new Course(COURSE1, PRICE1, DESSERT1);
-    // Course course2 = new Course(COURSE2, PRICE2, DESSERT2);
-    // @Before
+    // setup
+    @Before
     public void setUp() {
-        List<Course> coursesList = new ArrayList<>();
+        coursesList = new ArrayList<>();
         coursesList.add(new Course(COURSE1, PRICE1, DESSERT1));
         coursesList.add(new Course(COURSE2, PRICE2, DESSERT2));
-        for (Course course : coursesList) {
-            System.out.println(course.price());
-            System.out.println(course.name());
-            // assertEquals("les plats sont", "pâtes", course.name().toString());
-        }
     };
+
+    Meal meal = new Meal();
 
     @Test
     public void testMeal() {
-        Meal meal = new Meal();
-        Course cake = new Course("Cake", 4.50f, true);
-        meal.order(cake);
-        assertEquals(1, meal.ordered().size());
-        assertTrue(meal.getOrderedCourses().get(0).isDessert());
+        // exercise
+        Course plat1 = coursesList.get(1);
+        Course plat2 = coursesList.get(0);
+        meal.order(plat1, 4);
+        meal.order(plat2, 3);
+
+        Map<Course, Integer> counts = meal.getCourseCounts();
+        // verify
+        assertEquals("Poulet coco devrait être commandé 4 fois", (Integer) 4, counts.get(plat1));
+        assertEquals("Riz devrait être commandé 3 fois", (Integer) 3, counts.get(plat2));
+
     }
+    // teardown
+
 }

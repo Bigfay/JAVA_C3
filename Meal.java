@@ -1,6 +1,8 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 //import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Overview Meal est une représentation mutable d'un repas en cours de
@@ -76,12 +78,36 @@ public class Meal {
         }
     }
 
+    public Map<Course, Integer> getCourseCounts() {
+        Map<Course, Integer> counts = new HashMap<>();
+        for (Course course : ordered) {
+            counts.put(course, counts.getOrDefault(course, 0) + 1);
+        }
+        return counts;
+    }
+
+    /**
+     * Retourne une copie de la liste des plats commandés.
+     * 
+     * @return une copie de la liste des cours commandés pour éviter la modification
+     *         extérieure directe.
+     */
+    public List<Course> getOrderedCourses() {
+        return new ArrayList<>(ordered); // Retourne une copie pour préserver l'encapsulation
+    }
+
     public void displayOrderedCourses() {
         if (ordered.isEmpty()) {
             System.out.println("Aucun plat commandé.");
         } else {
+            Map<String, Integer> courseCount = new HashMap<>();
             for (Course course : ordered) {
-                System.out.println(course.toString());
+                String courseKey = course.name() + (course.isDessert() ? " (Dessert)" : " (Plat)");
+                courseCount.put(courseKey, courseCount.getOrDefault(courseKey, 0) + 1);
+            }
+
+            for (Map.Entry<String, Integer> entry : courseCount.entrySet()) {
+                System.out.println(entry.getKey() + " commandé " + entry.getValue() + " fois");
             }
         }
     }
