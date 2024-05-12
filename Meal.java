@@ -76,6 +76,16 @@ public class Meal {
         }
     }
 
+    public void displayOrderedCourses() {
+        if (ordered.isEmpty()) {
+            System.out.println("Aucun plat commandé.");
+        } else {
+            for (Course course : ordered) {
+                System.out.println(course.toString());
+            }
+        }
+    }
+
     // [...]
 
 }

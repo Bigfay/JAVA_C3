@@ -1,4 +1,5 @@
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -37,14 +38,11 @@ public class MealTest {
     };
 
     @Test
-    public void testMeal(List<Course> coursesList) {
-        // assertEquals("La somme de 1 et 2 devrait être 3", 3, Calculateur.somme(1,
-        // 2));
-        // assertEquals("coucou", 5, Calculateur.somme(2, 3));
-
-        for (Course course : coursesList) {
-            // System.out.println(course.name());
-            assertEquals("les plats sont", "pâtes", course.name().toString());
-        }
+    public void testMeal() {
+        Meal meal = new Meal();
+        Course cake = new Course("Cake", 4.50f, true);
+        meal.order(cake);
+        assertEquals(1, meal.ordered().size());
+        assertTrue(meal.getOrderedCourses().get(0).isDessert());
     }
 }
