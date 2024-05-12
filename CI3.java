@@ -21,5 +21,6 @@ public class CI3 {
         plat = coursesList.get(0);
         meal.order(plat, 3);
         meal.displayOrderedCourses();
+        System.out.println(plat.name());
     }
 }

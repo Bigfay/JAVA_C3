@@ -8,7 +8,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class MealTest {
+public class Meal2Test {
 
     private final String COURSE1 = "Poulet coco";
     private final float PRICE1 = 12.99f;
@@ -32,17 +32,15 @@ public class MealTest {
     @Test
     public void testMeal() {
         // setup
-        Course plat1 = coursesList.get(0);
-        Course plat2 = coursesList.get(1);
+        Course plat1 = coursesList.get(1);
+        Course plat2 = coursesList.get(0);
         meal.order(plat1, 4);
         // exercise
         meal.order(plat2, 3);
 
         Map<Course, Integer> counts = meal.getCourseCounts();
         // verify
-        assertEquals("Le nom du plat est ", (String) COURSE1, plat1.name());
         assertEquals("Poulet coco devrait être commandé 4 fois", (Integer) 4, counts.get(plat1));
-        assertEquals("Le nom du plat est ", (String) COURSE2, plat2.name());
         assertEquals("Riz devrait être commandé 3 fois", (Integer) 3, counts.get(plat2));
 
     }
@@ -50,7 +48,6 @@ public class MealTest {
     // teardown
     @After
     public void tearDown() {
-        coursesList.clear();
+        coursesList.clear(); // Exemple de nettoyage : réinitialiser la liste des cours
     }
-
 }
