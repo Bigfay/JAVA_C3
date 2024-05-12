@@ -96,7 +96,7 @@ public class Meal {
         return new ArrayList<>(ordered); // Retourne une copie pour préserver l'encapsulation
     }
 
-    public void displayOrderedCourses() {
+    /* public void displayOrderedCourses() {
         if (ordered.isEmpty()) {
             System.out.println("Aucun plat commandé.");
         } else {
@@ -111,7 +111,7 @@ public class Meal {
             }
         }
     }
-
+*/
     // [...]
 
 }
